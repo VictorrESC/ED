@@ -84,19 +84,16 @@ std::string Tree::find_path(int value) { // TODO
 
 //a função recursiva find deve retornar uma sequencia o path até o destino com x no final
 std::string Tree::_find_path(Node *node, int value) { // TODO
-    if(node == nullptr) {
-        return "";
-    } else if(node->key == value) {
+    if(node == nullptr) // caso base: não existe
+        return "!";
+    if(node->key == value) // caso base: achou
         return "x";
-    }
     std::string left = _find_path(node->left, value);
-    if(left != ""){
+    if(left != "!") // caso base: achou
         return "l" + left;
-    }
     std::string right = _find_path(node->right, value);
-    if(right != "") {
+    if(right != "!") // caso base: achou
         return "r" + right;
-    }
-    return "";
+    return "!"; // caso base: não existe
 }   
 
